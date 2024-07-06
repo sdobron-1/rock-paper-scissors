@@ -1,4 +1,24 @@
+Computer Choice
+Setup function for computer choice
 Setup a variable for computerchoice
 use Math.random to pick a random number 
 use if else statement to assign random number to rock paper or scissors
-less than 0.33 is rock, greater than 0.33 and less than 0.66 is rock greater than 0.66 and less than 0.99 is scissors
+less than 0.33 is rock, greater than 0.33 and less than 0.66 is rock greater everything else is scissors. Use lower case only.
+set to variable
+
+Human Choice
+Setup function for humanchoice
+setup a variable for humanchoice
+call prompt asking for rock paper or scissors
+store variable from prompt and convert to all lowercase letters
+
+Round Function
+setup function with parameters of humanchoice and computerchoice
+set if else statement to compare humanchoice and computerchoice
+if humanchoice = computer choice then display Draw
+if else humanchoice is rock and computer choice is scissors then display Win
+if else humanchoice is paper and computer choice is rock then display Win
+if else humanchoice is scissors and computer choice is paper then display Win
+else computer wins, display Lose
+
+

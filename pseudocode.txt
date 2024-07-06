@@ -1,0 +1,4 @@
+Setup a variable for computerchoice
+use Math.random to pick a random number 
+use if else statement to assign random number to rock paper or scissors
+less than 0.33 is rock, greater than 0.33 and less than 0.66 is rock greater than 0.66 and less than 0.99 is scissors

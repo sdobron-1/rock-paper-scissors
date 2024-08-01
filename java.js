@@ -1,5 +1,7 @@
 let humanChoice = "";
 let computerChoice = "";
+let humanScore = 0;
+let computerScore = 0;
 
 const btn1 = document.getElementById("rock");
 btn1.addEventListener("click", getHumanChoice);
@@ -10,10 +12,9 @@ btn2.addEventListener("click", getHumanChoice);
 const btn3 = document.getElementById("scissors");
 btn3.addEventListener("click", getHumanChoice);
 
-const scoreBoard = document.querySelector("div");
+const resultOutput = document.getElementById("resultOutput");
 
 function getHumanChoice() {
-    if (humanScore != 5 && computerScore !=5) {
         try {humanChoice =this.value;
             return;
         } finally {
@@ -21,18 +22,26 @@ function getHumanChoice() {
             playRound(humanChoice,computerChoice);
         }
    }
-}
 
-function scoreBoard(humanScore,computerScore) {
-
-}
+function scoreBoard() {
+    if (humanScore === 5) {
+        alert("Human has scored 5 and wins the match! Resetting the Game.");
+        reset();
+        return;
+    } else if (computerScore === 5) {
+        alert("Computer has scored 5 and wins the match. Try again.")
+        reset ();
+        return;
+    } else document.getElementById("runningScore").innerText=`HUMAN: ${humanScore} COMPUTER: ${computerScore}`;
+        return;
+    }
 
 function getComputerChoice() {
     number = Math.random();
-    if (number <=0.45) {
+    if (number <=0.33) {
         computerChoice = "rock";
         return;
-    } else if (number >0.45 && number <0.75) {
+    } else if (number >0.33 && number <0.66) {
         computerChoice = "paper";
         return; 
     } else 
@@ -40,32 +49,33 @@ function getComputerChoice() {
         return;
 }
 
-    function playRound(humanChoice, computerChoice) {
-        let humanScore = 0;
-        let computerScore = 0;
+    function playRound() {
         if (humanChoice === computerChoice) {
-            scoreBoard.appendChild(document.createTextNode("\n" + `Your ${humanChoice} ties the computer's ${computerChoice}. This is a draw.`));
+            resultOutput.appendChild(document.createTextNode("\n" + `Your ${humanChoice} ties the computer's ${computerChoice}. This is a draw.`));
+            scoreBoard (humanScore, computerScore);
         } else if (humanChoice === "rock" && computerChoice === "scissors") {
-            humanScore++;
-            scoreBoard.appendChild(document.createTextNode("\n" + `Your ${humanChoice} beats the computer's ${computerChoice}. You win!`));
+            ++humanScore;
+            resultOutput.appendChild(document.createTextNode("\n" + `Your ${humanChoice} beats the computer's ${computerChoice}. You win!`));
+            scoreBoard (humanScore, computerScore);
         } else if (humanChoice === "paper" && computerChoice === "rock") {
-            humanScore++;
-            scoreBoard.appendChild(document.createTextNode("\n" + `Your ${humanChoice} beats the computer's ${computerChoice}. You win!`));
+            ++humanScore;
+            resultOutput.appendChild(document.createTextNode("\n" + `Your ${humanChoice} beats the computer's ${computerChoice}. You win!`));
+            scoreBoard (humanScore, computerScore);
         } else if (humanChoice === "scissors" && computerChoice === "paper") {
-            humanScore++;
-            scoreBoard.appendChild(document.createTextNode("\n" + `Your ${humanChoice} beats the computer's ${computerChoice}. You win!`));
+            ++humanScore;
+            resultOutput.appendChild(document.createTextNode("\n" + `Your ${humanChoice} beats the computer's ${computerChoice}. You win!`));
+            scoreBoard (humanScore, computerScore);
         } else {
-            computerScore++;
-            scoreBoard.appendChild(document.createTextNode("\n" + `The computer's ${computerChoice} beats your ${humanChoice}. You lose.`));
+            ++computerScore;
+            resultOutput.appendChild(document.createTextNode("\n" + `The computer's ${computerChoice} beats your ${humanChoice}. You lose.`));
+            scoreBoard (humanScore, computerScore);
             }
     }
 
-//} else if (humanScore === 5) {
-//    scoreBoard.appendChild(document.createTextNode("\n" + `Your score is ${humanScore} and the computer's score is ${computerScore}. You win!`));
-//    humanScore = 0;
-//    computerScore = 0;
-//} else if (computerScore === 5) {
-//    scoreBoard.appendChild(document.createTextNode("\n" + `The computer's score is ${computerScore} and your score is ${humanScore}. You lose.`));
-//    humanScore = 0;
-//    computerScore = 0;
-//}
+    function reset() {
+        runningScore.textContent ="";
+        document.getElementById("resultOutput").textContent ="";
+        humanScore = 0;
+        computerScore = 0;
+        return;
+    }
